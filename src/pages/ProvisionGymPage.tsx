@@ -30,6 +30,7 @@ import {
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
 import { GYM_CONFIG } from '../config/gymConfig';
+import { API_BASE_URL } from '../config/apiConfig';
 
 interface RegisteredGym {
   id: string;
@@ -87,7 +88,7 @@ export const ProvisionGymPage: React.FC = () => {
     setErrorMessage('');
 
     try {
-      const response = await fetch('/api/super-admin/gyms', {
+      const response = await fetch(`${API_BASE_URL}/api/super-admin/gyms`, {
         headers: {
           'x-super-admin-secret': cleanKey,
         },

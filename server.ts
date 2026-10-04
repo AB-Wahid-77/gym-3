@@ -6,6 +6,7 @@
 // ============================================================================
 
 import express, { Request, Response, NextFunction } from 'express';
+import cors from 'cors';
 import crypto from 'crypto';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -21,6 +22,11 @@ const currentFilename = isEsm ? fileURLToPath(import.meta.url) : (typeof __filen
 const currentDirname = isEsm ? path.dirname(currentFilename) : (typeof __dirname !== 'undefined' ? __dirname : process.cwd());
 
 const app = express();
+
+app.use(cors({
+  origin: process.env.FRONTEND_URL || '*',
+  credentials: true,
+}));
 
 // Parse port from CLI flags or default to 3000 (required for AI Studio dev server)
 const args = process.argv.slice(2);

@@ -6,6 +6,7 @@
 
 import { Member, FeePayment, FeeStatus, GeneratedPlan, MemberProgram, PlanReceipt } from '../types';
 import { addOneMonth } from '../utils/formatters';
+import { API_BASE_URL } from '../config/apiConfig';
 import {
   getAuthToken,
   getRefreshToken,
@@ -81,7 +82,7 @@ async function refreshSessionToken(): Promise<string | null> {
 
   refreshPromise = (async () => {
     try {
-      const response = await fetch('/api/auth/refresh', {
+      const response = await fetch(`${API_BASE_URL}/api/auth/refresh`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ refreshToken: currentRefreshToken }),
@@ -141,7 +142,7 @@ export async function apiFetch<T>(endpoint: string, options: RequestInit = {}): 
     headers['Authorization'] = `Bearer ${token}`;
   }
 
-  let response = await fetch(endpoint, {
+  let response = await fetch(`${API_BASE_URL}${endpoint}`, {
     ...options,
     headers,
   });
@@ -151,7 +152,7 @@ export async function apiFetch<T>(endpoint: string, options: RequestInit = {}): 
     const newToken = await refreshSessionToken();
     if (newToken) {
       headers['Authorization'] = `Bearer ${newToken}`;
-      response = await fetch(endpoint, {
+      response = await fetch(`${API_BASE_URL}${endpoint}`, {
         ...options,
         headers,
       });
