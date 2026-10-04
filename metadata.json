@@ -1,0 +1,6 @@
+{
+  "name": "IRONFORGE - Gym Management",
+  "description": "Streamlined gym management application for administrators featuring member registries, billing and fee reconciliation, count-up analytics, and personalized workout and diet plan generation.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

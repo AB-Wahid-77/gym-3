@@ -1,0 +1,143 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-bg: #FAF8F3;
+    --color-surface: #FFFFFF;
+    --color-surface-2: #F3EFE6;
+    --color-border: #E5DFD0;
+    --color-gold-primary: #B8860B;
+    --color-gold-secondary: #996F08;
+    --color-gold-glow: rgba(184, 134, 11, 0.22);
+    --color-txt: #171717;
+    --color-txt-muted: #6B6B6B;
+    --color-success: #22C55E;
+    --color-warning: #FB923C;
+    --color-danger: #EF4444;
+  }
+
+  .dark {
+    --color-bg: #0B0B0B;
+    --color-surface: #141414;
+    --color-surface-2: #1C1C1C;
+    --color-border: #2A2A2A;
+    --color-gold-primary: #F5B301;
+    --color-gold-secondary: #C9A24B;
+    --color-gold-glow: rgba(245, 179, 1, 0.25);
+    --color-txt: #F5F5F5;
+    --color-txt-muted: #A1A1A1;
+    --color-success: #22C55E;
+    --color-warning: #FB923C;
+    --color-danger: #EF4444;
+  }
+}
+
+@theme {
+  --font-heading: 'Rubik Mono One', -apple-system, monospace, sans-serif;
+  --font-sans: 'Figtree', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-space: 'Space Grotesk', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  --color-bg: var(--color-bg);
+  --color-surface: var(--color-surface);
+  --color-surface-2: var(--color-surface-2);
+  --color-border: var(--color-border);
+  --color-gold-primary: var(--color-gold-primary);
+  --color-gold-secondary: var(--color-gold-secondary);
+  --color-gold-glow: var(--color-gold-glow);
+  --color-txt: var(--color-txt);
+  --color-txt-muted: var(--color-txt-muted);
+  --color-status-success: var(--color-success);
+  --color-status-warning: var(--color-warning);
+  --color-status-danger: var(--color-danger);
+}
+
+/* Custom transitions and typography */
+html {
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.font-heading {
+  font-family: var(--font-heading);
+  letter-spacing: 0.04em;
+}
+
+.font-space {
+  font-family: var(--font-space);
+  letter-spacing: -0.015em;
+}
+
+/* Glow gradient background */
+.bg-gold-radial {
+  background: radial-gradient(circle at 50% 0%, rgba(245, 179, 1, 0.12) 0%, transparent 70%);
+}
+
+.dark .bg-gold-radial {
+  background: radial-gradient(circle at 50% 0%, rgba(245, 179, 1, 0.15) 0%, transparent 65%);
+}
+
+/* Shimmer animation */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.03) 0%,
+    rgba(245, 179, 1, 0.1) 50%,
+    rgba(255, 255, 255, 0.03) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.6s infinite ease-in-out;
+}
+
+/* Overdue pulse animation */
+@keyframes pulse-danger {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 0 7px rgba(239, 68, 68, 0);
+    transform: scale(1.02);
+  }
+}
+
+.animate-pulse-danger {
+  animation: pulse-danger 1.8s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold-secondary);
+}
+
+/* Print styling for receipts */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+}
