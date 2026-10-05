@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "tsx server.ts",
-    "start": "tsx server.ts"
+    "start": "node dist/server.cjs"
   },
   "dependencies": {
     "@google/genai": "^2.4.0",
